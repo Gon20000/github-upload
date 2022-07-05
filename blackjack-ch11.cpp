@@ -1,4 +1,4 @@
-#include "random.cpp"
+#include "random.h"
 #include <array>
 #include <algorithm>
 #include <iostream>

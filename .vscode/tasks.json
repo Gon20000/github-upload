@@ -8,6 +8,7 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "${file}",
+                //"${fileDirname}/*.cpp",
                 "-o", //output
                 "${fileDirname}/${fileBasenameNoExtension}",
                 "-pedantic-errors",

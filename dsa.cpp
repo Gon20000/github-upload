@@ -80,10 +80,3 @@ int binarySearch(const T* array, int target, int min, int max) {
         return mid;
     }*/
 }
-
-
-int main() {
-
-    return 0;
-}
-
