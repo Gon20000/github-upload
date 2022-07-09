@@ -14,6 +14,7 @@ namespace Random {
 
 	std::mt19937 systemMt{ ss };
 	
+	// inclusive
 	int get(int min, int max) {
 		std::uniform_int_distribution result{min, max};
 		return result(systemMt);
