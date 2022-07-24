@@ -1,50 +1,50 @@
+#include <exception>
 #include <iostream>
-#include <string>
+#include <stdexcept>
 
-template <typename T>
-class Pair1
+class Fraction
 {
 private:
-    T m_first{};
-    T m_second{};
+    int m_numerator{};
+    int m_denominator{};
 
 public:
-    Pair1(const T &first, const T &second) : m_first{first}, m_second{second}
+    Fraction(int numerator = 0, int denominator = 1)
+        : m_numerator{numerator}, m_denominator{denominator}
     {
+        if (denominator == 0)
+        {
+            throw std::runtime_error("Invalid denominator");
+        }
     }
 
-    const T &first() const { return m_first; }
-    const T &second() const { return m_second; }
-};
-
-template <typename T1, typename T2>
-class Pair
-{
-private:
-    T1 m_first{};
-    T2 m_second{};
-
-public:
-    Pair(const T1 &first, const T2 &second) : m_first{first}, m_second{second}
+    friend std::ostream &operator<<(std::ostream &out, const Fraction &fraction)
     {
+        return out << fraction.m_numerator << '/' << fraction.m_denominator;
     }
-
-    const T1 &first() const { return m_first; }
-    const T2 &second() const { return m_second; }
 };
 
-template <typename T>
-class StringValuePair : public Pair<std::string, T>
-{
-public:
-    StringValuePair(const std::string &first, const T& second)
-        : Pair<std::string, T>(first, second) {}
-};
+int getInput() {
+    int num{};
+    std::cin >> num;
 
-int main()
-{
-    StringValuePair<int> svp{"Hello", 5};
-    std::cout << "Pair: " << svp.first() << ' ' << svp.second() << '\n';
+    return num;
+}
+
+int main() {
+    std::cout << "Enter the numerator: ";
+    int numerator{getInput()};
+
+    std::cout << "Enter the denominator: ";
+    int denominator{getInput()};
+
+    try {
+        const Fraction fraction{numerator, denominator};
+        std::cout << fraction << '\n';
+    }
+    catch(const std::exception& exception) {
+        std::cout << exception.what() << '\n';
+    }
 
     return 0;
 }
