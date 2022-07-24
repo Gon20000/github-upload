@@ -43,7 +43,7 @@ int main() {
         std::cout << fraction << '\n';
     }
     catch(const std::exception& exception) {
-        std::cout << exception.what() << '\n';
+        std::cerr << exception.what() << '\n';
     }
 
     return 0;
