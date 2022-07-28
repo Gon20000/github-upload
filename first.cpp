@@ -1,50 +1,35 @@
-#include <exception>
+#include <fstream>
 #include <iostream>
-#include <stdexcept>
+#include <string>
 
-class Fraction
+int main()
 {
-private:
-    int m_numerator{};
-    int m_denominator{};
+    std::ifstream inf{ "test.txt" };
 
-public:
-    Fraction(int numerator = 0, int denominator = 1)
-        : m_numerator{numerator}, m_denominator{denominator}
+    // If we couldn't open the input file stream for reading
+    if (!inf)
     {
-        if (denominator == 0)
-        {
-            throw std::runtime_error("Invalid denominator");
-        }
+        // Print an error and exit
+        std::cerr << "Uh oh, Sample.txt could not be opened for reading!\n";
+        return 1;
     }
 
-    friend std::ostream &operator<<(std::ostream &out, const Fraction &fraction)
-    {
-        return out << fraction.m_numerator << '/' << fraction.m_denominator;
-    }
-};
+    std::string strData;
 
-int getInput() {
-    int num{};
-    std::cin >> num;
+    inf.seekg(5); // move to 5th character
+    // Get the rest of the line and print it
+    std::getline(inf, strData);
+    std::cout << strData << '\n';
 
-    return num;
-}
+    inf.seekg(8, std::ios::cur); // move 8 more bytes into file
+    // Get rest of the line and print it
+    std::getline(inf, strData);
+    std::cout << strData << '\n';
 
-int main() {
-    std::cout << "Enter the numerator: ";
-    int numerator{getInput()};
-
-    std::cout << "Enter the denominator: ";
-    int denominator{getInput()};
-
-    try {
-        const Fraction fraction{numerator, denominator};
-        std::cout << fraction << '\n';
-    }
-    catch(const std::exception& exception) {
-        std::cerr << exception.what() << '\n';
-    }
+    inf.seekg(-14, std::ios::end); // move 14 bytes before end of file
+    // Get rest of the line and print it
+    std::getline(inf, strData);
+    std::cout << strData << '\n';
 
     return 0;
 }
