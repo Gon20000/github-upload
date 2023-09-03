@@ -1,1 +1,1 @@
-Just applying what I do on learncpp.com
+- This used to be just my learncpp solutions but I've added multiple other stuff that I've solved on usaco!
