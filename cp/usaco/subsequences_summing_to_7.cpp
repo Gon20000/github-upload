@@ -2,20 +2,19 @@
 using namespace std;
 using ll = long long;
 
-ll solve(int x, int y, const vector<ll>& sum) {
-    if (x > y + 1) 
-        return 0;
-    else if ((sum[y] - sum[x - 1]) % 7 == 0)
-        return y - x + 1;
-    
-    return max(solve(x, y - 1, sum), solve(x + 1, y, sum));
-}
+/*
+a =  [3, 5, 1, 6, 2, 14, 10]
+a_sum = [3, 8, 9, 15, 17, 31, 41] 
+
+a % 7 = [3, 5, 1, 6, 2, 0, 3]
+a_sum % 7 = [3, 1, 2, 1, 3, 3, 6]    
+*/
 
 int main() {
-    ios::sync_with_stdio(false);
+/*     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     freopen("div7.in", "r", stdin);
-    freopen("div7.out", "w", stdout);
+    freopen("div7.out", "w", stdout); */
     
     int N{};
     cin >> N;
@@ -26,13 +25,12 @@ int main() {
         ll id{};
         cin >> id;
 
-        if(sum.size() == 0)
-            sum.push_back(id);
-        else {
-            sum.push_back(id + sum[sum.size() - 1]);
-        }
+
+        sum.push_back((id + sum[sum.size() - 1])%7);
     }
 
-    cout << solve(1, sum.size() - 1, sum) << '\n';
+    for (ll x : sum) {
+        cout  << x << ' ';
+    } 
     return 0;
 }
