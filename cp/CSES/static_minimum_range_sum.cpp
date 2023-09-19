@@ -47,8 +47,6 @@ ll query(int idx, int left, int right, int x, int y) {
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    freopen("a.in", "r", stdin);
-    freopen("a.out", "w", stdout);
 
     ll n{}, q{};
     cin >> n >> q;

@@ -81,13 +81,12 @@ void update(int idx, int left, int right, int x, int y, ll add)
         update(2 * idx + 2, mid + 1, right, x, y, add);
     }
 
-    propagate(2 * idx + 1, left, right);
-    propagate(2 * idx + 2, left, right);
+    propagate(2 * idx + 1, left, mid);
+    propagate(2 * idx + 2, mid + 1, right);
     recalc(idx);
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
