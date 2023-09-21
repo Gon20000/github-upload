@@ -18,6 +18,7 @@
                 "-Wsign-conversion",
                 "-std=c++2a", //use cpp20 standard
                 "-fsanitize=address", // debugger thing
+                // "-Wl,-z,stack-size=0xF0000000", // increase stack size
             ],
             "options": {
                 "cwd": "${fileDirname}"
